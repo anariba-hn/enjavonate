@@ -2,7 +2,7 @@ const Product = require('../models/Product.Model')
 
 async function getProducts (req, res){
     const products = await Product.find().lean().exec()
-    res.status(200).send({ products })
+    res.status(200).send({ products, success:true })
 }
 
 async function addProduct (req, res){
@@ -29,10 +29,10 @@ async function addProduct (req, res){
         }
 
         const productStored = await product.save()
-        res.status(200).send({ productStored })
+        res.status(200).send({ productStored, sucess:true })
     } catch (e) {
         console.log(e)
-        res.status(500).send({ message : e.message })
+        res.status(500).send({ message : e.message, success:false })
     }
 }
 
