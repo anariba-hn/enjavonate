@@ -4,7 +4,14 @@ const { addUser, getUser } = require('../controllers/user.controller')
 
 const api = express.Router()
 
-api.get('/user', getUser)
-api.post('/user/signup', addUser)
+api.get('/', getUser)
+api.post('/signup', addUser)
+api.post('/singin', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if(err) throw err
+        if(!user) return res.status(201).send({ info })
+        if(user) return res.status(201).send({ user })
+    }) (req, res, next)
+})
 
 module.exports = api

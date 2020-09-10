@@ -11,7 +11,7 @@ const UserSchema = Schema({
     address: String,
     phone: String,    
 }, {
-    timestamp: true
+    timestamps: true
 })
 
 UserSchema.methods.bcryptPassword = async function bcryptPassword(pw){
@@ -20,7 +20,7 @@ UserSchema.methods.bcryptPassword = async function bcryptPassword(pw){
 }
 
 UserSchema.methods.comparePassword = async function comparePassword(pw){
-    const matched = await bcrypt.compareSync(pw, this.password);
+    const matched = await bcrypt.compareSync(pw, this.password)
     return matched
 }
 

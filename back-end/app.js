@@ -24,7 +24,7 @@ app.use(passport.session())
 
 app.use('/public', express.static(`${__dirname}/storage/imgs`))
 
-app.use('/v1/api', productRoute)
-app.use('/v1/api', userRoute)
+app.use('/v1/api/product', productRoute)
+app.use('/v1/api/user', userRoute)
 
 module.exports = app
